@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>Usia</title>
+    </head>
+    <body>
+        <h1>{{page_title}}</h1>
+        <p>Input tahun lahir anda</p>
+        <form method='POST' action='/usia'>
+            <input type="number" name="tahun_lahir"/>
+            <button type="submit">Hitung</button> 
+        </form>
+        {% if usia is not none %}
+        
+        <p>Usia anda saat ini adalah {{usia}}</p>
+        
+        {% endif %}
+    </body>
+    
+</html>
