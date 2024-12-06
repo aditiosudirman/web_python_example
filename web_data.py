@@ -1,6 +1,9 @@
 import psycopg2
 import bcrypt
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+from sqlalchemy import create_engine, ForeignKey, Column, String, Integer, CHAR
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 dbname_var = "hotel"
 user_var = "postgres"
@@ -259,7 +262,6 @@ class User:
             cur.close()
             conn.close()
 
-
 class UserDetails:
 
     def __init__(self):
@@ -445,6 +447,9 @@ class UserDetails:
         finally:
             cur.close()
             conn.close()
+
+
+
 
 user = User()
 user_details = UserDetails()
