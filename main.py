@@ -4,6 +4,9 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 import web_data
 import secrets
+from sqlalchemy import create_engine, ForeignKey, Column, String, Integer, CHAR
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 from pydantic import BaseModel, EmailStr
 
 app = FastAPI()
