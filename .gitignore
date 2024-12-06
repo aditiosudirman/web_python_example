@@ -1,10 +1,10 @@
 __pycache__/
-hotel.db
+*.db
 main_flask.py
 templates/index_flask.html
 templates/usia.html
 templates/home.html
-bat_*
+*.bat
 
 # Bytecode files
 *.pyc
