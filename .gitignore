@@ -1,6 +1,28 @@
+__pycache__/
 hotel.db
 main_flask.py
 templates/index_flask.html
 templates/usia.html
 templates/home.html
 bat_*
+
+# Bytecode files
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment folders
+env/
+venv/
+.venv/
+
+# Cache and logs
+*.log
+*.sqlite3
+.DS_Store
+
+# idea
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
