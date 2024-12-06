@@ -20,6 +20,7 @@ venv/
 
 # idea
 .idea/
+.vs/
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
