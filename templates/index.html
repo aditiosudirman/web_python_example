@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <!-- Use request.url_for for static assets -->
-    <link rel="stylesheet" href="/static/style.css?v=1">
+	<link rel="icon" type="image/ico" href="{{ request.url_for('static', path='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ request.url_for('static', path='style.css') }}?v=1">
 </head>
 <body>
     <!-- Header Section -->
@@ -14,8 +15,12 @@
             <ul>
                 <li><a href="{{ request.url_for('home') }}">Home</a></li>
                 <li><a href="{{ request.url_for('about') }}">About</a></li>
-                <li><a href="{{ request.url_for('login') }}">Login</a></li>
-                <li><a href="{{ request.url_for('register') }}">Register</a></li>
+				{% if is_logged_in %}
+                <li><a href="{{ request.url_for('logout') }}">Logout</a></li>
+				{% else %}
+					<li><a href="{{ request.url_for('login') }}">Login</a></li>
+					<li><a href="{{ request.url_for('register') }}">Register</a></li>
+				{% endif %}
             </ul>
         </nav>
     </header>
@@ -29,8 +34,8 @@
         </section>
         {% elif title == "Register" %}
         <section class="register-form">
-			<h1>Register</h1>
-			<form method="POST" action="{{ url_for('register') }}">
+            <h1>Register</h1>
+            <form method="POST" action="{{ url_for('register') }}">
                 <label for="first_name">First Name</label>
                 <input type="text" id="first_name" name="first_name" required>
 
@@ -52,11 +57,29 @@
                 <button type="submit">Register</button>
             </form>
 
-			<!-- Optional Error Message -->
-			{% if error_message %}
-				<p class="error">{{ error_message }}</p>
-			{% endif %}
-		</section>
+            <!-- Optional Error Message -->
+            {% if error_message %}
+                <p class="error">{{ error_message }}</p>
+            {% endif %}
+        </section>
+        {% elif title == "Login" %}
+        <section class="login-form">
+            <h1>Login</h1>
+            <form method="POST" action="{{ url_for('login') }}">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <!-- Optional Error Message -->
+            {% if error_message %}
+                <p class="error">{{ error_message }}</p>
+            {% endif %}
+        </section>
         {% endif %}
     </main>
 
@@ -65,5 +88,4 @@
         <p>&copy; 2024 Your Website. All rights reserved.</p>
     </footer>
 </body>
-
 </html>
