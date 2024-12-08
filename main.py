@@ -6,6 +6,7 @@ from pydantic import EmailStr
 import web_data
 import secrets
 from itsdangerous import URLSafeTimedSerializer
+import subprocess
 
 app = FastAPI()
 
@@ -132,4 +133,4 @@ async def logout():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="localhost", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
