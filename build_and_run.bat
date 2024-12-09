@@ -1,9 +1,37 @@
 @echo off
-echo Building Docker image...
-docker build -t myweb-api .
-if %errorlevel% neq 0 (
-    echo Error during build. Exiting.
-    exit /b %errorlevel%
+REM Check if temp_last_hash.txt exists; create if missing
+if not exist temp_last_hash.txt (
+    echo Creating initial temp_last_hash.txt...
+    echo No hash yet. > temp_last_hash.txt
+)
+
+REM Calculate a hash of the source files
+certutil -hashfile Dockerfile MD5 > temp_current_hash.txt
+for %%f in (src\*.* templates\*.* static\*.*) do (
+    certutil -hashfile %%f MD5 >> temp_current_hash.txt
+)
+
+REM Compare hashes
+fc /b temp_last_hash.txt temp_current_hash.txt >nul
+if %errorlevel% equ 1 (
+    echo Changes detected. Cleaning up old container and image...
+
+    REM Stop and remove the existing container (if running)
+    docker stop my_container 2>nul
+    docker rm my_container 2>nul
+
+    REM Remove the old image
+    docker rmi myweb-api 2>nul
+
+    echo Rebuilding the image...
+    docker build -t myweb-api .
+    REM if %errorlevel% neq 0 (
+        REM echo Build failed. Exiting.
+        REM exit /b %errorlevel%
+    REM )
+    copy temp_current_hash.txt temp_last_hash.txt >nul
+) else (
+    echo No changes detected. Skipping build...
 )
 
 echo Waiting for 2 seconds...
