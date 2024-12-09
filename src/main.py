@@ -6,7 +6,6 @@ from pydantic import EmailStr
 import web_data
 import secrets
 from itsdangerous import URLSafeTimedSerializer
-import subprocess
 
 app = FastAPI()
 
