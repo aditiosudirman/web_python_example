@@ -10,7 +10,7 @@ if db_use == 'postgresql':
     # PostgreSQL connection details
     POSTGRES_USER = os.getenv("POSTGRES_USER", "postgres")
     POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "admin")
-    POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
+    POSTGRES_HOST = os.getenv("POSTGRES_HOST", "192.168.137.214")
     POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
     POSTGRES_DB = os.getenv("POSTGRES_DB", "mydb")
     ADMIN_DATABASE_URL = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/postgres"
