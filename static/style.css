@@ -1,171 +1,216 @@
 /* General Styling */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+*, *:before, *:after {
+    box-sizing: inherit;
 }
-
-header {
-    background-color: #333;
-    color: white;
-    padding: 10px 0;
+div {
+    display: block;
+    unicode-bidi: isolate;
 }
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
+html, body {
+    font-family: Verdana, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+	background-color: #117 !important;
+	margin:0px;
 }
-
-nav ul li {
-    display: inline;
-    margin: 0 20px;
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
 }
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}
-
-nav ul li a:hover {
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
     text-decoration: underline;
 }
-
-/* Main Content */
-main {
-    padding: 20px;
-    text-align: center;
+/* ID's */
+#pagetop {
+    position: fixed;
+    z-index: 4;
+    font-size: 16px;
+    background-color: #fff !important;
+    color: #282A35;
+    padding:0px;
+    font-family: 'Source Sans Pro Topnav', sans-serif;
+    min-width: 330px;
+}
+#pagecenter {
+	position: relative;
+	padding-top: 50px;
 }
 
-h1 {
-    color: #333;
-}
-
-.intro p {
-    font-size: 18px;
-}
-
-/* Form Styling */
+/* Classes */
 .register-form {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
-
-.register-form h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-}
-
 .register-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+	float: left;
 }
-
 .register-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.register-form input:focus {
-    border-color: #666;
-    outline: none;
-}
-
-.register-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.register-form button:hover {
-    background-color: #555;
-}
-
-.login-form {
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+	float: right !important;
+}
+.container {
+	box-sizing: border-box;
+  width: 80%;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  float:center;
+  margin-left:10%;
+  margin-bottom:5px;
+  margin-top:5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+  border-radius: 8px;
 }
 
-.login-form h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+.panel {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: #fff;
+  transition: transform 0.6s ease-in-out;
 }
 
-.login-form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+.panel-second {
+  left: 0;
+  background-color: #fff;
+  z-index: 2;
 }
 
-.login-form input {
+.panel-fourth {
+  right: 0;
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  color: #fff;
+  z-index: 5;
+  transform: translateX(100%);
+}
+
+.panel-first {
+  left: 0;
+  background-color: #fff;
+  color: #fff;
+  z-index: 4;
+  transform: translateX(-100%);
+}
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+}
+.panel-third {
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  position: absolute;
+  float:right;
+  left: 0;
+  top: 0;
+  transition: transform 0.6s ease-in-out;
+}
+.btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff4b2b;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ff2e0c;
+}
+.dvs-white, .dvs-hover-white:hover {
+    color: #000 !important;
+    background-color: #fff !important;
+}
+.dvs-black, .dvs-hover-black:hover {
+    color: #fff !important;
+    background-color: #000 !important;
+}
+.dvs-gray, .dvs-hover-black:hover {
+    color: #fff !important;
+    background-color: #777 !important;
+}
+.dvs-left {
+    float: left !important;
+}
+.dvs-right {
+    float: right !important;
+}
+
+.dvs-bar {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    overflow: hidden;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+}
+.dvs-content{
+	width: 100%;
+    overflow: hidden;
 }
 
-.login-form input:focus {
-    border-color: #666;
-    outline: none;
+.dvs-bar .dvs-button {
+    white-space: normal;
 }
-
-.login-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    font-size: 16px;
+.dvs-btn, .dvs-button {
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.login-form button:hover {
-    background-color: #555;
-}
-
-
-.error {
-    color: red;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-/* Footer */
-footer {
-    background-color: #333;
-    color: white;
+    display: inline-block;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none !important;
+    color: inherit;
+    background-color: inherit;
     text-align: center;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    cursor: pointer;
+    white-space: nowrap;
 }
+.dvs-btn, .dvs-button {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.dvs-hover-none:hover{
+	background-color:inherit !important;
+}
+.dvs-btn:hover, .dvs-button:hover {
+    background-color: #333399;
+}
+.dvs-bar .dvs-bar-item {
+    padding: 8px 16px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0;
+}
+.dvs-logo {
+  height: 48px;
+  width: 100%;
+  display: flexbox;
+  align-items: center;
+  justify-content: center;
+}
+
+.dvs-logo:before {
+  content: url("favicon.ico");
+  /* content: "™"; */
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+
 
 /* Responsive Design */
 @media only screen and (max-width: 768px) {

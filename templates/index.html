@@ -10,82 +10,33 @@
 </head>
 <body>
     <!-- Header Section -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="{{ request.url_for('home') }}">Home</a></li>
-                <li><a href="{{ request.url_for('about') }}">About</a></li>
-				{% if is_logged_in %}
-                <li><a href="{{ request.url_for('logout') }}">Logout</a></li>
-				{% else %}
-					<li><a href="{{ request.url_for('login') }}">Login</a></li>
-					<li><a href="{{ request.url_for('register') }}">Register</a></li>
-				{% endif %}
-            </ul>
-        </nav>
-    </header>
-
+	<div id="pagetop" class="dvs-bar notranslate dvs-white">
+		<a href="#" class="dvs-bar-item  dvs-hover-none dvs-button dvs-left" style="width: 75px;padding:2px !important;">
+			<!-- <i class="dvs-logo" style="position: relative; z-index: 1; aria-hidden="true"/> -->
+			<div class="dvs-logo"></div>
+		</a>
+		<nav>
+			<a href="#" class="dvs-bar-item dvs-button" style="position: relative; z-index: 1; color: #04aa6d; font-size: 24px !important;display:inline-block;">
+				About us
+			</a>
+		</nav>
+		{% if is_logged_in %}
+		<a href="{{ url_for('logout') }}" class="dvs-bar-item dvs-button dvs-right" style="position: relative; z-index: 1; color: #04aa6d; font-size: 24px !important;display:inline-block;margin-right:5px">
+			Logout
+		</a>
+		{% endif %}
+	</div>
     <!-- Main Content Section -->
-    <main>
-        {% if title == "Home" %}
-        <section class="intro">
-            <h1>Welcome to My Website</h1>
-            <p>This is the home page. Explore our website for more information.</p>
-        </section>
-        {% elif title == "Register" %}
-        <section class="register-form">
-            <h1>Register</h1>
-            <form method="POST" action="{{ url_for('register') }}">
-                <label for="first_name">First Name</label>
-                <input type="text" id="first_name" name="first_name" required>
-
-                <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" name="last_name" required>
-
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-
-                <label for="confirm_password">Confirm Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" required>
-
-                <button type="submit">Register</button>
-            </form>
-
-            <!-- Optional Error Message -->
-            {% if error_message %}
-                <p class="error">{{ error_message }}</p>
-            {% endif %}
-        </section>
-        {% elif title == "Login" %}
-        <section class="login-form">
-            <h1>Login</h1>
-            <form method="POST" action="{{ url_for('login') }}">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
-
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-
-                <button type="submit">Login</button>
-            </form>
-
-            <!-- Optional Error Message -->
-            {% if error_message %}
-                <p class="error">{{ error_message }}</p>
-            {% endif %}
-        </section>
-        {% endif %}
-    </main>
+	<div id="pagecenter" class="dvs-content dvs-white">
+	{% if is_logged_in %}
+		{% include "about.html" %}
+	{% else %}
+		{% include "register-login.html" %}
+	{% endif %}
+    
+	</div>
 
     <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Your Website. All rights reserved.</p>
-    </footer>
+    
 </body>
 </html>

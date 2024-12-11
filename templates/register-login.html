@@ -1,0 +1,130 @@
+&nbsp;
+<div class="container">
+	<div class="panel panel-first">
+		<div class="content dvs-white">
+			<h1 style="color:red">Sign Up</h1>
+			<fieldset class="register-form">
+			<form method="POST" action="{{ url_for('register') }}">
+				<table>
+					<tr>
+						<td><label for="first_name">First Name</label></td>
+						<td><input type="text" id="first_name" name="first_name" required /></td>
+					</tr>
+					<tr>
+						<td><label for="last_name">Last Name</label></td>
+						<td><input type="text" id="last_name" name="last_name" required /></td>
+					</tr>
+					<tr>
+						<td><label for="email">Email</label></td>
+						<td><input type="email" id="email" name="email" required /></td>
+					</tr>
+					<tr>
+						<td><label for="username">Username</label></td>
+						<td><input type="text" id="username_reg" name="username" required /></td>
+					</tr>
+					<tr>
+						<td><label for="password">Password</label></td>
+						<td><input type="password" id="password_reg" name="password" required /></td>
+					</tr>
+					<tr>
+						<td><label for="confirm_password">Confirm Password</label></td>
+						<td><input type="password" id="confirm_password" name="confirm_password" required /></td>
+					</tr>
+				</table>
+				<button class="btn" type="submit" />Sign Up</button>
+			</form>
+			</fieldset>
+		</div>
+	</div>
+	<div class="panel panel-second">
+		<div class="content">
+			<h1 style="color:red">Sign in</h1>
+			<form method="POST" action="{{ url_for('login') }}">
+				<input type="text" id="username" name="username" placeholder="Username" required>
+				<input type="password" id="password" name="password" placeholder="Password" required>
+				<button class="btn">Sign In</button>
+			</form>
+		</div>
+	</div>
+	<div class="panel panel-third">
+		<div class="content">
+			<h1>Hello, Friend!</h1>
+			<p>Enter your details to start your journey with us</p>
+			<button class="btn" id="toggle2">Sign Up</button>
+		</div>
+	</div>
+	<div class="panel panel-fourth">
+		<div class="content">
+			<h1>Welcome Back!</h1>
+			<p>To keep connected, please log in with your personal info</p>
+			<button id="toggle" class="btn">Sign In</button>
+		</div>
+	</div>
+	
+</div>
+<script>
+const signInPanel = document.querySelector('.panel-second');
+const overlaySignIn = document.querySelector('.panel-third');
+const signUpPanel = document.querySelector('.panel-fourth');
+const signUpPanel2 = document.querySelector('.panel-first');
+const toggleButton = document.getElementById('toggle');
+const toggleButton2 = document.getElementById('toggle2');
+const speed = 10;
+var opacity = 1;
+var currentPanel = 1;
+var translateX = 0;
+var translateX2 = 0;
+var targetTransition = 100;
+toggleButton.addEventListener('click', () => {
+	toggleButton.disabled = true;
+	toggleButton2.disabled = false;
+	setTimeout(() => {
+		runAlphaTransition2(0);
+	}, 1000/speed*5);
+	
+	translateX = 0;
+	translateX2 = 0;
+	runTransition(0);
+});
+toggleButton2.addEventListener('click', () => {
+	toggleButton2.disabled = true;
+	toggleButton.disabled = false;
+	runAlphaTransition(0);
+	translateX = 0;
+	translateX2 = 0;
+	runTransition(0);
+});
+function runTransition(timer){
+	setTimeout(() => {
+		if(currentPanel == 1) {
+			translateX -= speed;
+			translateX2 += speed;
+			//signInPanel.style.opacity = clamp(0.9-(timer)/(100/speed), 0, 1);
+			//overlaySignIn.style.opacity = clamp(0.9-(timer)/(100/speed), 0, 1);
+		}else {
+			translateX += speed;
+			translateX2 -= speed;
+			//signInPanel.style.opacity = clamp(0.1+(timer)/(100/speed), 0, 1);
+			//overlaySignIn.style.opacity = clamp(0.1+(timer)/(100/speed), 0, 1);
+		}
+		signUpPanel.style.transform = `translateX(${translateX}%)`;
+		signUpPanel2.style.transform = `translateX(${translateX2}%)`;
+		timer++;
+		//console.log("running "+timer+"|target:"+currentPanel+"|opacity: "+`${signInPanel.style.opacity}%`+"|translate: "+`${signUpPanel.style.transform}%`);
+		if(timer < targetTransition / speed) { runTransition(timer); }else{ currentPanel=-currentPanel; } }, 0.5); } function runAlphaTransition(timer){ setTimeout(()=> {
+		signInPanel.style.opacity = clamp(0.9-(timer*2)/(100), 0, 1);
+		overlaySignIn.style.opacity = clamp(0.9-(timer*2)/(100), 0, 1);
+		timer++;
+		if(`${signInPanel.style.opacity}` > 0) {
+			console.log(timer);
+			runAlphaTransition(timer);
+		}
+	}, 0.1);
+}
+function runAlphaTransition2(timer){
+	setTimeout(() => {
+		signInPanel.style.opacity = clamp(0.1+(timer)/(100), 0, 1);
+		overlaySignIn.style.opacity = clamp(0.1+(timer)/(100), 0, 1);
+		timer++;
+		if(`${signInPanel.style.opacity}` < 1){ console.log(timer); runAlphaTransition2(timer); } }, 0.1); } function clamp(value, min, max) { return Math.min(Math.max(value, min), max); }
+</script>
